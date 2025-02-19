@@ -5,7 +5,7 @@ import asyncHandler from "express-async-handler";
 import QRCode from "qrcode"; // Import the QRCode library for generating QR codes
 import Attendance from "./../Models/Attendance.js";
 import AttendanceSession from "./../Models/AttendanceSession.js";
-import Course from "../models/Course.js";
+import Course from "../Models/Course.js";
 import cron from "node-cron";
 
 // import QRCode from "qrcode"; // Ensure QRCode is properly imported if not already
