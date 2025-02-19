@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../Models/User.js";
 import Department from "../Models/Department.js";
-import Course from "../models/Course.js";
+import Course from "../Models/Course.js";
 import { auth } from "../Middleware/AuthMiddleware.js";
 
 const userRouter = express.Router();
