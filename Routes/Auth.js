@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 import User from "../Models/User.js";
-import Department from "../models/Department.js";
+import Department from "../Models/Department.js";
 import Course from "../models/Course.js";
 import { auth } from "../Middleware/AuthMiddleware.js";
 
@@ -25,14 +25,8 @@ const generateUniqueId = (role) => {
 userRouter.post(
   "/register",
   asyncHandler(async (req, res) => {
-    const {
-      firstName,
-      lastName,
-      email,
-      password,
-      role,
-      departmentId,
-    } = req.body;
+    const { firstName, lastName, email, password, role, departmentId } =
+      req.body;
 
     if (!firstName || !lastName || !email || !password || !role) {
       res.status(400);
@@ -95,9 +89,6 @@ userRouter.post(
   })
 );
 
-
-
-
 // Login User
 userRouter.post(
   "/login",
@@ -149,7 +140,9 @@ userRouter.get(
   "/profile",
   auth, // Ensure the user is authenticated
   asyncHandler(async (req, res) => {
-    const user = await User.findById(req.user._id).populate("department courses").select("-password");
+    const user = await User.findById(req.user._id)
+      .populate("department courses")
+      .select("-password");
     if (user) {
       res.json(user);
     } else {
@@ -163,7 +156,8 @@ userRouter.put(
   "/profile",
   auth, // Ensure the user is authenticated
   asyncHandler(async (req, res) => {
-    const { firstName, lastName, email, password, department, role, uniqueId } = req.body;
+    const { firstName, lastName, email, password, department, role, uniqueId } =
+      req.body;
 
     const user = await User.findById(req.user._id);
 
@@ -196,8 +190,5 @@ userRouter.put(
     }
   })
 );
-
-
-
 
 export default userRouter;
